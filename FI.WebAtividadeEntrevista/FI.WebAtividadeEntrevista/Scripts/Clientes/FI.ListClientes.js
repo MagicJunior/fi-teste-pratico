@@ -12,6 +12,10 @@ $(document).ready(function () {
                 listAction: urlClienteList,
             },
             fields: {
+                Id: {
+                    key: true,
+                    list: false
+                },
                 Nome: {
                     title: 'Nome',
                     width: '50%'

@@ -1,5 +1,7 @@
-﻿
+﻿<!-- Formulário -->
 <form id="formCadastro" method="post">
+    <input type="hidden" id="IdCliente" name="IdCliente" value="@(Model?.Id ?? 0)" />
+
     <div class="row">
         <div class="col-md-12">
             <div class="form-group">
@@ -15,13 +17,20 @@
                 <input required="required" type="text" class="form-control" id="Sobrenome" name="Sobrenome" placeholder="Ex.: da Silva" maxlength="255">
             </div>
         </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="CPF">CPF:</label>
+                <input required="required" type="text" class="form-control" id="CPF" name="CPF" placeholder="Ex.: 000.000.000-00" maxlength="14">
+            </div>
+        </div>
+
         <div class="col-md-6">
             <div class="form-group">
                 <label for="Nacionalidade">Nacionalidade:</label>
                 <input required="required" type="text" class="form-control" id="Nacionalidade" name="Nacionalidade" placeholder="Ex.: brasileira" maxlength="50">
             </div>
         </div>
-
     </div>
     <div class="row">
         <div class="col-md-4">
@@ -73,13 +82,59 @@
     </div>
 
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-12 d-flex justify-content-between">
+            <div class="pull-left">
+                <button type="button" class="btn btn-sm btn-primary" id="btnBeneficiarios">Beneficiários</button>
+            </div>
             <div class="pull-right">
                 <button type="submit" class="btn btn-sm btn-success">Salvar</button>
                 @Html.ActionLink("Voltar", "Index", "Cliente", new { }, new { @class = "btn btn-sm btn-danger" })
             </div>
         </div>
     </div>
-
-
 </form>
+
+<!-- Modal Beneficiários -->
+<div id="modalBeneficiarios" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalLabelBeneficiarios">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" style="font-weight: 300; margin: 0;" id="modalLabelBeneficiarios">Beneficiários</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row align-items-end" style="margin-bottom: 30px; margin-top: 30px;">
+                    <div class="col-md-3" style="padding-right: 5px;">
+                        <label for="cpfBeneficiario" class="control-label">CPF:</label>
+                        <input type="text" class="form-control" id="cpfBeneficiario" />
+                    </div>
+                    <div class="col-md-5" style="padding-left: 5px; padding-right: 5px;">
+                        <label for="nomeBeneficiario" class="control-label">Nome:</label>
+                        <input type="text" class="form-control" id="nomeBeneficiario" />
+                    </div>
+                    <div class="col-md-2" style="padding-left: 5px;">
+                        <label>&nbsp;</label>
+                        <button id="btnIncluirBeneficiario" class="btn btn-success btn-block">Incluir</button>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-md-12">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="col-md-3">CPF</th>
+                                    <th class="col-md-5">Nome</th>
+                                    <th class="col-md-4">Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="listaBeneficiarios">
+                                <!-- Beneficiários serão adicionados aqui via JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

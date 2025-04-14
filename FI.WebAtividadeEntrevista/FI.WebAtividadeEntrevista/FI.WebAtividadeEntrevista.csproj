@@ -117,11 +117,13 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BeneficiarioController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BeneficiarioModel.cs" />
     <Compile Include="Models\ClienteModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -345,6 +347,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\themes\base\minified\images\" />
+    <Folder Include="Views\Beneficiario\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -358,7 +361,6 @@
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
-
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
@@ -399,10 +401,10 @@
   </Target>
   <Target Name="AfterBuild">
   </Target> -->
-<Target Name="CopyRoslynCompilers" AfterTargets="Build">
-  <ItemGroup>
-    <CompilerFiles Include="$(NuGetPackageRoot)\microsoft.codedom.providers.dotnetcompilerplatform\**\tools\roslyn\**\*" />
-  </ItemGroup>
-  <Copy SourceFiles="@(CompilerFiles)" DestinationFolder="$(OutDir)roslyn\%(RecursiveDir)" SkipUnchangedFiles="true" />
-</Target>
+  <Target Name="CopyRoslynCompilers" AfterTargets="Build">
+    <ItemGroup>
+      <CompilerFiles Include="$(NuGetPackageRoot)\microsoft.codedom.providers.dotnetcompilerplatform\**\tools\roslyn\**\*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(CompilerFiles)" DestinationFolder="$(OutDir)roslyn\%(RecursiveDir)" SkipUnchangedFiles="true" />
+  </Target>
 </Project>
